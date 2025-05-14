@@ -3,7 +3,7 @@ using OopLab.Repo;
 
 namespace OopLab.Services;
 
-public abstract class BaseService<T> where T : BaseEntity
+public abstract class BaseService<T> : IBaseService<T> where T : BaseEntity
 {
     protected BaseRepo<T> repo;
 

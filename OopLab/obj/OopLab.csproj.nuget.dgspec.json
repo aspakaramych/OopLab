@@ -1,30 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "D:\\programming\\OopLab\\OopLab\\OopLab.csproj": {}
+    "D:\\projects\\OopLab1\\OopLab\\OopLab.csproj": {}
   },
   "projects": {
-    "D:\\programming\\OopLab\\OopLab\\OopLab.csproj": {
+    "D:\\projects\\OopLab1\\OopLab\\OopLab.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\programming\\OopLab\\OopLab\\OopLab.csproj",
+        "projectUniqueName": "D:\\projects\\OopLab1\\OopLab\\OopLab.csproj",
         "projectName": "OopLab",
-        "projectPath": "D:\\programming\\OopLab\\OopLab\\OopLab.csproj",
-        "packagesPath": "C:\\Users\\vlad\\.nuget\\packages\\",
-        "outputPath": "D:\\programming\\OopLab\\OopLab\\obj\\",
+        "projectPath": "D:\\projects\\OopLab1\\OopLab\\OopLab.csproj",
+        "packagesPath": "C:\\Users\\vgrig\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\OopLab1\\OopLab\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VSCommunity\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\vlad\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vgrig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -36,12 +40,13 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "imports": [
             "net461",
             "net462",
@@ -58,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\vgrig\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2,7 +2,7 @@
 
 namespace OopLab.Repo;
 
-public abstract class BaseRepo<T> where T : BaseEntity
+public abstract class BaseRepo<T> : IBaseRepo<T> where T : BaseEntity 
 {
     protected List<T> items = new List<T>();
 
