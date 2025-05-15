@@ -50,15 +50,17 @@ public static class ManagePizzas
                     Console.WriteLine($"{c.Id}: {c.Name}");
                 Console.Write("Добавить бортик (ID или 'q' для выхода): ");
                 var newinput = Console.ReadLine();
-                if (newinput.ToLower() == "q") break;
-
-                var crust = crustService.GetById(Guid.Parse(newinput));
-                if (crust != null)
+                if (newinput.ToLower() == "q")
                 {
+                    
+                }
+                else
+                {
+                    var crust = crustService.GetById(Guid.Parse(newinput));
+
                     pickedCrust = crust;
                     Console.WriteLine($"Добавлен бортик: {crust.Name}");
                 }
-
 
                 var pizza = new Pizza
                 {

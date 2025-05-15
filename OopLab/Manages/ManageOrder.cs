@@ -53,7 +53,6 @@ public class ManageOrder
                                 Id = Guid.NewGuid(),
                                 Name = "Пользовательская",
                                 Ingredients = new List<Ingredient>(),
-                                Base = pizzaService._baseService.GetAll().FirstOrDefault(b => b.IsClassic)
                             };
 
 
@@ -73,7 +72,13 @@ public class ManageOrder
                                     Console.WriteLine($"Добавлен ингредиент: {ingredient.Name}");
                                 }
                             }
-
+                            Console.WriteLine("Доступные основы:");
+                            foreach (var b in pizzaService._baseService.GetAll())
+                                Console.WriteLine($"{b.Id}: {b.Name} - {b.Cost}");
+                            Console.Write("Выберите ID основы: ");
+                            var baseId = Guid.Parse(Console.ReadLine());
+                            var selectedBase = pizzaService._baseService.GetById(baseId);
+                            customPizza.Base = selectedBase;
                             orderPizza.Pizza = customPizza;
                             orderPizza.IsCustom = true;
                             break;
@@ -107,17 +112,17 @@ public class ManageOrder
                         Console.WriteLine($"{c.Id}: {c.Name}");
                     Console.Write("Добавить бортик (ID или 'q' для выхода): ");
                     var newinput = Console.ReadLine();
-                    if (newinput.ToLower() == "q") break;
-
-                    var crust = pizzaService._crustService.GetById(Guid.Parse(newinput));
-                    pickedCrust = crust;
-                    if (crust != null)
+                    if (newinput.ToLower() == "q")
                     {
-                        orderPizza.Crust = pickedCrust;
+                    
+                    }
+                    else
+                    {
+                        var crust = pizzaService._crustService.GetById(Guid.Parse(newinput));
+
+                        orderPizza.Crust = crust;
                         Console.WriteLine($"Добавлен бортик: {crust.Name}");
                     }
-
-
                     order.Pizzas.Add(orderPizza);
                 }
 
