@@ -2,18 +2,45 @@
 
 public class Pizza : BaseEntity
 {
-    public string Name { get; set; }
-    public List<Ingredient> Ingredients { get; set; }
-    public PizzaBase Base { get; set; }
-    public PizzaCrust? Crust { get; set; }
+    private string _name;
+
+    public string Name
+    {
+        get => _name;
+        set => _name = value;
+    }
+
+    private List<Ingredient> _ingredients;
+
+    public List<Ingredient> Ingredients
+    {
+        get => _ingredients;
+        set => _ingredients = value;
+    }
+
+    private PizzaBase _base;
+
+    public PizzaBase Base
+    {
+        get => _base;
+        set => _base = value;
+    }
+
+    private PizzaCrust? _crust;
+
+    public PizzaCrust? Crust
+    {
+        get => _crust;
+        set => _crust = value;
+    }
 
     public decimal Cost
     {
         get
         {
             decimal cost = Base.Cost;
-            cost += Ingredients.Sum(i => i.Cost);
-            cost += Crust != null ? Crust.Ingredients.Sum(i => i.Cost) : 0;
+            cost += _ingredients.Sum(i => i.Cost);
+            cost += _crust != null ? _crust.Ingredients.Sum(i => i.Cost) : 0;
             return cost;
         }
     }

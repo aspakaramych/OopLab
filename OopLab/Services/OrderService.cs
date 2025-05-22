@@ -38,6 +38,14 @@ public class OrderService : BaseService<Order>
             var baseExisting = _pizzaService._baseService.GetById(orderPizza.Pizza.Base.Id);
             if (baseExisting == null)
                 throw new ArgumentException("Такой основы нет");
+            
+        }
+        else if (orderPizza.HalfPizzaA != null && orderPizza.HalfPizzaB != null)
+        {
+            var existingA = _pizzaService.GetById(orderPizza.HalfPizzaA.Id);
+            var existingB = _pizzaService.GetById(orderPizza.HalfPizzaB.Id);
+            if (existingA == null || existingB == null)
+                throw new ArgumentException("Пицца не найдена");
         }
         else
         {
@@ -46,19 +54,15 @@ public class OrderService : BaseService<Order>
                 throw new ArgumentException("Такой пиццы нет");
         }
 
-        if (orderPizza.HalfPizzaA != null && orderPizza.HalfPizzaB != null)
-        {
-            var existingA = _pizzaService.GetById(orderPizza.HalfPizzaA.Id);
-            var existingB = _pizzaService.GetById(orderPizza.HalfPizzaB.Id);
-            if (existingA == null || existingB == null)
-                throw new ArgumentException("Пицца не найдена");
-        }
+        
 
         if (orderPizza.Crust != null)
         {
             var existingCrust = _pizzaService._crustService.GetById(orderPizza.Crust.Id);
             if (existingCrust == null)
                 throw new ArgumentException("Бортик не найден");
+            if (existingCrust.PizzaIds.Count == 0)
+                throw new AggregateException("Бортик нельзя испроользовать с этой пиццей");
         }
     }
 }

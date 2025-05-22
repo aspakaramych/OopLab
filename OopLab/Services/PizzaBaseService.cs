@@ -11,6 +11,20 @@ public class PizzaBaseService : BaseService<PizzaBase>
         _repo = repo;
     }
 
+    public void Add(string name, decimal cost, bool isClassic)
+    {
+        var item = new PizzaBase 
+        { 
+            Id = Guid.NewGuid(), 
+            Name = name, 
+            Cost = cost, 
+            IsClassic = isClassic 
+        };
+        
+        ValidatePizzaBase(item);
+        base.Add(item);
+    }
+
     public override void Add(PizzaBase item)
     {
         ValidatePizzaBase(item);

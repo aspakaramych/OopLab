@@ -20,17 +20,14 @@ public static class ManageIngredients
                 Console.Write("Введите стоимость ингредиента: ");
                 decimal cost = decimal.Parse(Console.ReadLine());
                 
-                var ingredient = new Ingredient 
-                { 
-                    Id = Guid.NewGuid(), 
-                    Name = name, 
-                    Cost = cost 
-                };
                 
                 try 
-                { 
-                    service.Add(ingredient); 
-                    Console.WriteLine($"Ингредиент '{name}' добавлен"); 
+                {
+                    if (name != null)
+                    {
+                        service.Add(name, cost);
+                        Console.WriteLine($"Ингредиент '{name}' добавлен");
+                    }
                 } 
                 catch (Exception ex) 
                 { 

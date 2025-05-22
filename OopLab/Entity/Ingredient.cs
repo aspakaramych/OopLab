@@ -2,8 +2,21 @@
 
 public class Ingredient : BaseEntity
 {
-    public string Name { get; set; }
-    public decimal Cost { get; set; }
+    private string _name;
+
+    public string Name
+    {
+        get => _name;
+        set => _name = value;
+    }
+
+    private decimal _cost;
+
+    public decimal Cost
+    {
+        get => _cost;
+        set => _cost = value;
+    }
     
     public override void Validate()
     {

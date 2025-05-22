@@ -22,18 +22,9 @@ public static class ManageBases
                 decimal cost = decimal.Parse(Console.ReadLine());
                 Console.Write("Это классическая основа? (y/n): ");
                 bool isClassic = Console.ReadLine().ToLower() == "y";
-                
-                var basePizza = new PizzaBase 
-                { 
-                    Id = Guid.NewGuid(), 
-                    Name = name, 
-                    Cost = cost, 
-                    IsClassic = isClassic 
-                };
-                
                 try 
                 { 
-                    service.Add(basePizza); 
+                    service.Add(name, cost, isClassic); 
                     Console.WriteLine($"Основа '{name}' добавлена"); 
                 } 
                 catch (Exception ex) 

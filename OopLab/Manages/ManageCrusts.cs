@@ -55,18 +55,11 @@ public class ManageCrusts
                     pizzaIds.Add(Guid.Parse(input));
                 }
 
-                var crust = new PizzaCrust
-                {
-                    Id = Guid.NewGuid(),
-                    Name = name,
-                    Ingredients = ingredients,
-                    UsageType = usageType,
-                    PizzaIds = pizzaIds
-                };
+                
 
                 try
                 {
-                    service.Add(crust);
+                    service.Add(name, ingredients, usageType, pizzaIds);
                     Console.WriteLine($"Бортик '{name}' добавлен");
                 }
                 catch (Exception ex)

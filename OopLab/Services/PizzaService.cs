@@ -19,6 +19,46 @@ public class PizzaService : BaseService<Pizza>
         _crustService = crustService;
     }
 
+    public void Add(string name, List<Ingredient> ingredients, PizzaBase selectedBase, PizzaCrust? pickedCrust)
+    {
+        var item = new Pizza
+        {
+            Id = Guid.NewGuid(),
+            Name = name,
+            Ingredients = ingredients,
+            Base = selectedBase,
+            Crust = pickedCrust
+        };
+        
+        var existingBase = _baseService.GetById(item.Base.Id);
+        if (existingBase == null)
+            throw new ArgumentException("Основа не найдена");
+
+        foreach (var ingredient in item.Ingredients)
+        {
+            var existingIngredient = _ingredientService.GetById(ingredient.Id);
+            if (existingIngredient == null)
+                throw new ArgumentException("Нет ингредиента");
+        }
+
+        if (item.Crust != null)
+        {
+            var existingCrust = _crustService.GetById(item.Crust.Id);
+            if (existingCrust == null)
+                throw new ArgumentException("Бортик не найден");
+            if (existingCrust.UsageType == UsageTypes.Allow && !existingCrust.PizzaIds.Contains(item.Id))
+                throw new ArgumentException($"Этот бортик {existingCrust.Name} нельзя использовать с этой пиццой");
+            if (existingCrust.UsageType == UsageTypes.Block && existingCrust.PizzaIds.Contains(item.Id))
+                throw new ArgumentException($"Этот бортик {existingCrust.Name} нельзя использовать с этой пиццой");
+            if (existingCrust.PizzaIds.Count == 0)
+            {
+                throw new ArgumentException($"Этот бортик {existingCrust.Name} нельзя использовать с этой пиццой");
+            }
+        }
+        
+        base.Add(item);
+    }
+
     public override void Add(Pizza item)
     {
         var existingBase = _baseService.GetById(item.Base.Id);
@@ -41,10 +81,12 @@ public class PizzaService : BaseService<Pizza>
                 throw new ArgumentException($"Этот бортик {existingCrust.Name} нельзя использовать с этой пиццой");
             if (existingCrust.UsageType == UsageTypes.Block && existingCrust.PizzaIds.Contains(item.Id))
                 throw new ArgumentException($"Этот бортик {existingCrust.Name} нельзя использовать с этой пиццой");
+            if (existingCrust.PizzaIds.Count == 0)
+            {
+                throw new ArgumentException($"Этот бортик {existingCrust.Name} нельзя использовать с этой пиццой");
+            }
         }
-            
         
-
         base.Add(item);
     }
 }

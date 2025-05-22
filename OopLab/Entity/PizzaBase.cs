@@ -2,12 +2,32 @@
 
 public class PizzaBase : BaseEntity
 {
-    public string Name { get; set; }
-    public decimal Cost { get; set; }
-    public bool IsClassic { get; set; }
+    private string _name;
+
+    public string Name
+    {
+        get => _name;
+        set => _name = value;
+    }
+
+    private decimal _cost;
+
+    public decimal Cost
+    {
+        get => _cost;
+        set => _cost = value;
+    }
+
+    private bool _isClassic;
+
+    public bool IsClassic
+    {
+        get => _isClassic;
+        set => _isClassic = value;
+    }
     public override void Validate()
     {
-        if (string.IsNullOrWhiteSpace(Name))
+        if (string.IsNullOrWhiteSpace(_name))
         {
             throw new Exception("Имя обязательно");
         }

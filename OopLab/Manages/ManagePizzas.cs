@@ -62,18 +62,11 @@ public static class ManagePizzas
                     Console.WriteLine($"Добавлен бортик: {crust.Name}");
                 }
 
-                var pizza = new Pizza
-                {
-                    Id = Guid.NewGuid(),
-                    Name = name,
-                    Ingredients = ingredients,
-                    Base = selectedBase,
-                    Crust = pickedCrust
-                };
+                
 
                 try
                 {
-                    service.Add(pizza);
+                    service.Add(name, ingredients, selectedBase, pickedCrust);
                     Console.WriteLine($"Пицца '{name}' добавлена");
                 }
                 catch (Exception ex)
